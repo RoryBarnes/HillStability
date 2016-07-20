@@ -35,6 +35,8 @@
  * close to the system's center-of-mass, Approx uses the input        *
  * elements.                                                          *
  *                                                                    *
+ * Thanks to Russell Deitrick for catching a bug in read_init()!      *
+ *                                                                    *
  **********************************************************************/
 
 #include <stdio.h>
@@ -84,7 +86,7 @@ void read_init(char *infile, ELEMS *p1, ELEMS *p2,double *m,int *origin) {
 
   fscanf(fp,"%lf",&m[0]);
   fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[1],&p1->a,&p1->e,&p1->i,&p1->aper,&p1->lasc,&p1->mean_an);
-  fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[2],&p2->a,&p2->e,&p1->i,&p2->aper,&p2->lasc,&p2->mean_an);
+  fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[2],&p2->a,&p2->e,&p2->i,&p2->aper,&p2->lasc,&p2->mean_an);
   fscanf(fp,"%s",c_origin);
   if (memcmp(sLower(c_origin),"ba",2) == 0) 
     *origin = 0;
@@ -305,7 +307,7 @@ int main(int argc, char *argv[]) {
   }
 
   read_init(argv[1],&p1,&p2,m,&origin);
-  /* Heliocentric coordinates */
+  /* bodycentric coordinates */
   for (i=0;i<3;i++) {
     x[0][i]=0.0;
     v[0][i]=0.0;
