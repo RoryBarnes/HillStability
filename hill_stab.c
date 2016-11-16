@@ -19,7 +19,8 @@
  *                                                                    *
  * The user inputs the central mass in solar units and the orbiters   *
  * parameters are entered into the next two lines with the format:    *
- * ArgumentPericenter MeanAnomaly. The units are Jupiter masses, AU,  *
+ * Mass SemiMajorAxis Eccentricity Inclination ArgumentPericenter     *
+ * LongAscNode MeanAnomaly. The units are Jupiter masses, AU,         *
  * and degrees. The final line must state either "bodycentric" or     *
  * "barycentric" to indicate the coordinate system of the orbital     *
  * elements. There are no command line options.                       *
