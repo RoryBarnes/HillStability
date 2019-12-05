@@ -2,8 +2,8 @@ Hill Stability of a Three-Body System
 =========================
 
 This code calculates the relative proximity of a three-body system to "Hill stability." A Hill stable system is one for which the ordering of the
-planets remains constant, i.e. the most distant body may escape to infinity and
-the system would still be Hill stable. Hill stability may be calculated for any system, but this code is optimized for planetary systems `Barnes, R. &
+bodies remains constant, i.e. the most distant body may escape to infinity and
+the system would still be considered "Hill stable." Hill stability may be calculated for any three-body system, but this code is optimized for planetary systems and was first used in `Barnes, R. &
 Greenberg, R. (2006) <https://ui.adsabs.harvard.edu/abs/2006ApJ...647L.163B/abstract>`_.
 
 To compile:
