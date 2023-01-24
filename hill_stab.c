@@ -83,18 +83,21 @@ void read_init(char *infile, ELEMS *p1, ELEMS *p2,double *m,int *origin) {
   char c_origin[24];
   FILE *fp;
 
-  fp=fopen(infile,"r");
-
-  fscanf(fp,"%lf",&m[0]);
-  fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[1],&p1->a,&p1->e,&p1->i,&p1->aper,&p1->lasc,&p1->mean_an);
-  fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[2],&p2->a,&p2->e,&p2->i,&p2->aper,&p2->lasc,&p2->mean_an);
-  fscanf(fp,"%s",c_origin);
-  if (memcmp(sLower(c_origin),"ba",2) == 0) 
-    *origin = 0;
-  else if (memcmp(sLower(c_origin),"bo",2) == 0) 
-    *origin = 1;
-  else {
-    fprintf(stderr,"ERROR: Unknown coordinate system. Options are barycentric or bodycentric.\n");
+  if (fp=fopen(infile,"r")) {
+    fscanf(fp,"%lf",&m[0]);
+    fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[1],&p1->a,&p1->e,&p1->i,&p1->aper,&p1->lasc,&p1->mean_an);
+    fscanf(fp,"%lf %lf %lf %lf %lf %lf %lf",&m[2],&p2->a,&p2->e,&p2->i,&p2->aper,&p2->lasc,&p2->mean_an);
+    fscanf(fp,"%s",c_origin);
+    if (memcmp(sLower(c_origin),"ba",2) == 0) 
+      *origin = 0;
+    else if (memcmp(sLower(c_origin),"bo",2) == 0) 
+      *origin = 1;
+    else {
+      fprintf(stderr,"ERROR: Unknown coordinate system. Options are barycentric or bodycentric.\n");
+      exit(1);
+    }
+  } else {
+    fprintf(stderr,"File %s not found.\n",infile);
     exit(1);
   }
 
